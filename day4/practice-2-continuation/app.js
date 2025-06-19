@@ -1050,9 +1050,16 @@
 // });
 
 const popUpView = document.getElementById("pop-up-view");
+
+const popupContent = document.getElementById("pop-up-content");
+
 const handleCardClick = () => {
     // alert("clicked");
     popUpView.style.display = "flex";
+
+    popupContent.innerHTML = `
+        <p>Likhilesh</p>
+    `;
 };
 
 const homeButton = document.getElementsByTagName("button")[0];
@@ -1060,3 +1067,7 @@ const homeButton = document.getElementsByTagName("button")[0];
 homeButton.addEventListener("click", () => {
     alert("Programmatically handled!");
 });
+
+const handleClosePopUp = () => {
+    popUpView.style.display = "none";
+};
