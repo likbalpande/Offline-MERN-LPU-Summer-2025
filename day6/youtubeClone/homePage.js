@@ -8261,23 +8261,11 @@ const renderTrendingVideos = (dataObj) => {
         newDiv.className = "trending-card";
 
         newDiv.innerHTML = `
-                <div className='video-thumbnail-container' onclick="handleViewVideo('${videoId}')">
-                    <img src='${videoThumbnails[1].url}' class='video-thumb-img'>
-                </div>
-                <div className='card-details'>
-                    <div className='author-image-container'>
-                        <img src=''>
-                    </div>
-                    <div className='video-data-right'>
-                        <p className='video-title'>${title}</p>
-                        <p className='author-title'>${author}</p>
-                        <div>
-                            <p className='view-count'>${viewCountText}</p>
-                            <p className='published-text'>${publishedText}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
+            <div className='video-thumbnail-container' onclick="handleViewVideo('${videoId}')">
+                <img src='${videoThumbnails[1].url}' class='video-thumb-img'>
+            </div>
+            
+        `;
 
         cardsParentElem.appendChild(newDiv);
     });
@@ -8307,3 +8295,19 @@ const getData = () => {
 };
 
 getData();
+
+{
+    /* <div className='card-details'>
+                <div className='author-image-container'>
+                    <img src=''>
+                </div>
+                <div className='video-data-right'>
+                    <p className='video-title'>${title}</p>
+                    <p className='author-title'>${author}</p>
+                    <div>
+                        <p className='view-count'>${viewCountText}</p>
+                        <p className='published-text'>${publishedText}</p>
+                    </div>
+                </div>
+            </div> */
+}
