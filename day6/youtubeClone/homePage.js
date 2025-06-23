@@ -8248,6 +8248,7 @@ const cardsParentElem = document.getElementById("cards-parent");
 
 const renderTrendingVideos = (dataObj) => {
     const { list } = dataObj;
+    console.log("🟡 : list:", list);
 
     list.forEach((element) => {
         const { author, publishedText, title, viewCountText, videoThumbnails, authorThumbnails } = element;
@@ -8257,17 +8258,18 @@ const renderTrendingVideos = (dataObj) => {
 
         newDiv.innerHTML = `
                 <div className='video-thumbnail-container'>
-                    <img src=''>
+                    <img src='${videoThumbnails[1].url}' class='video-thumb-img'>
                 </div>
                 <div className='card-details'>
                     <div className='author-image-container'>
                         <img src=''>
                     </div>
                     <div className='video-data-right'>
-                        <p className='video-title'></p>
+                        <p className='video-title'>${title}</p>
+                        <p className='author-title'>${author}</p>
                         <div>
-                            <p className='view-count'></p>
-                            <p className='published-text'></p>
+                            <p className='view-count'>${viewCountText}</p>
+                            <p className='published-text'>${publishedText}</p>
                         </div>
                     </div>
                 </div>
