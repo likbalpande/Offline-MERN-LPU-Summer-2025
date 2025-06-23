@@ -8246,18 +8246,22 @@ const dummyData = {
 
 const cardsParentElem = document.getElementById("cards-parent");
 
+const handleViewVideo = (videoId) => {
+    window.open(`./viewPage.html?videoId=${videoId}`, "_self");
+};
+
 const renderTrendingVideos = (dataObj) => {
     const { list } = dataObj;
     console.log("🟡 : list:", list);
 
     list.forEach((element) => {
-        const { author, publishedText, title, viewCountText, videoThumbnails, authorThumbnails } = element;
+        const { author, publishedText, title, viewCountText, videoThumbnails, authorThumbnails, videoId } = element;
 
         const newDiv = document.createElement("div");
         newDiv.className = "trending-card";
 
         newDiv.innerHTML = `
-                <div className='video-thumbnail-container'>
+                <div className='video-thumbnail-container' onclick="handleViewVideo('${videoId}')">
                     <img src='${videoThumbnails[1].url}' class='video-thumb-img'>
                 </div>
                 <div className='card-details'>
