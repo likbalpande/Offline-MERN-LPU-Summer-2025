@@ -1,0 +1,8 @@
+To start with NODEJS:
+1. download NODEJS
+2. check for version
+    >> node -v
+    >> npm -v
+3. >> npm init -y
+4. create a javascript file
+5. >> node <file_name>
