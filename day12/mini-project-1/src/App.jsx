@@ -8,6 +8,7 @@ import { useState } from "react";
 // when the state change --> component re-render --> re-run :: APP
 const App = () => {
     const [text, setText] = useState(""); // a
+    console.log("🟡 : text:", text);
 
     const handleSearchText = (newVal) => {
         setText(newVal); // noted! --> a

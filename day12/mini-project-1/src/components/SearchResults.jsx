@@ -12,11 +12,19 @@ const SearchResults = (props) => {
     const getSearchResults = async () => {
         const response = await fetch(`https://dummyjson.com/products/search?q=${searchQuery}`);
         const data = await response.json();
+        console.log("🟡 : data:", data);
         setResults(data.products);
     };
 
+    // you will have to revise useEffect (debouncing)
     useEffect(() => {
-        getSearchResults();
+        console.log("---starting useEffect----");
+        const timeoutId = setTimeout(getSearchResults, 400);
+
+        return () => {
+            console.log("---cleaning-up useEffect----");
+            clearTimeout(timeoutId);
+        };
     }, [searchQuery]); // dependency array: initial render only
 
     return (
