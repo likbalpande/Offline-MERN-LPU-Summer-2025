@@ -5,12 +5,18 @@
 import { useEffect, useState } from "react";
 import { ProductResultCard } from "./ProductResultCard";
 
+const LIMIT = 4;
+
 const SearchResults = (props) => {
     const [results, setResults] = useState([]);
+    const [page, setPage] = useState(1);
+    console.log("🟡 : page:", page);
     const { searchQuery } = props; // a
 
     const getSearchResults = async () => {
-        const response = await fetch(`https://dummyjson.com/products/search?q=${searchQuery}`);
+        const response = await fetch(
+            `https://dummyjson.com/products/search?q=${searchQuery}&skip=${LIMIT * (page - 1)}&limit=${LIMIT}`
+        );
         const data = await response.json();
         console.log("🟡 : data:", data);
         setResults(data.products);
@@ -25,7 +31,7 @@ const SearchResults = (props) => {
             console.log("---cleaning-up useEffect----");
             clearTimeout(timeoutId);
         };
-    }, [searchQuery]); // dependency array: initial render only
+    }, [page, searchQuery]); // dependency array: initial render only
 
     return (
         <div>
@@ -43,6 +49,14 @@ const SearchResults = (props) => {
                         />
                     );
                 })}
+            </div>
+            <div>
+                <div className="flex gap-2 items-center justify-center">
+                    <button className="py-1 px-2 bg-amber-200 rounded-md">1</button>
+                    <button className="py-1 px-2 bg-amber-200 rounded-md" onClick={() => setPage(2)}>
+                        2
+                    </button>
+                </div>
             </div>
         </div>
     );
