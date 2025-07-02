@@ -10,6 +10,7 @@ const LIMIT = 4;
 const SearchResults = (props) => {
     const [results, setResults] = useState([]);
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     console.log("🟡 : page:", page);
     const { searchQuery } = props; // a
 
@@ -19,7 +20,10 @@ const SearchResults = (props) => {
         );
         const data = await response.json();
         console.log("🟡 : data:", data);
+
         setResults(data.products);
+
+        setTotalPages(Math.ceil(data.total / LIMIT));
     };
 
     // you will have to revise useEffect (debouncing)
@@ -33,6 +37,12 @@ const SearchResults = (props) => {
         };
     }, [page, searchQuery]); // dependency array: initial render only
 
+    useEffect(() => {
+        setPage(1);
+    }, [searchQuery]);
+
+    const dummyArray = new Array(totalPages).fill("hello");
+
     return (
         <div>
             <h2>{searchQuery}</h2>
@@ -42,6 +52,7 @@ const SearchResults = (props) => {
                     return (
                         <ProductResultCard
                             key={elem.id} // help react to identify each card uniquely
+                            id={elem.id} // help react to identify each card uniquely
                             title={elem.title}
                             price={elem.price}
                             rating={elem.rating}
@@ -51,11 +62,20 @@ const SearchResults = (props) => {
                 })}
             </div>
             <div>
-                <div className="flex gap-2 items-center justify-center">
-                    <button className="py-1 px-2 bg-amber-200 rounded-md">1</button>
-                    <button className="py-1 px-2 bg-amber-200 rounded-md" onClick={() => setPage(2)}>
-                        2
-                    </button>
+                <div className="p-4 flex gap-x-4 gap-y-2 items-center justify-center flex-wrap">
+                    {dummyArray.map((elem, idx) => {
+                        return (
+                            <button
+                                key={idx}
+                                onClick={() => {
+                                    setPage(idx + 1);
+                                }}
+                                className="px-2 py-1 bg-blue-600 text-white rounded-md text-sm cursor-pointer"
+                            >
+                                {idx + 1}
+                            </button>
+                        );
+                    })}
                 </div>
             </div>
         </div>

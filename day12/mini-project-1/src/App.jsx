@@ -19,7 +19,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<HomePage text={text} handleSearchText={handleSearchText} x="y" />} />
                 <Route path="/search" element={<SearchPage text={text} handleSearchText={handleSearchText} />} />
-                <Route path="/view" element={<ViewPage />} />
+                <Route path="/:productId/view" element={<ViewPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
