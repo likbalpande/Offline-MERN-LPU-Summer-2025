@@ -17,6 +17,8 @@ const saveObjectToArrayInFile = async (obj, filePath) => {
     obj.id = uuidv4();
     arr.push(obj);
     await saveArrayToFile(arr, filePath);
+
+    return obj;
 };
 
 const getAllDataFromArrayFromFile = async (filePath) => {
@@ -42,6 +44,7 @@ const getAllDataFromArrayFromFile = async (filePath) => {
     }
 };
 
+//patch
 const editObjectFromArrayFromFile = async (newObjProperties, elemId, filePath) => {
     const arr = await getAllDataFromArrayFromFile(filePath);
     // if it is able to parse --> get the particular Object from array using id

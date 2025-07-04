@@ -12,11 +12,11 @@ const main = async () => {
     // const resp = await getAllDataFromArrayFromFile(filePath);
     // console.log("all data --> ", resp);
 
-    saveObjectToArrayInFile({ name: "Anuj", city: "Noida", score: 50 }, filePath);
+    await saveObjectToArrayInFile({ name: "Anuj", city: "Noida", score: 50 }, filePath);
     const resp2 = await getAllDataFromArrayFromFile(filePath);
     console.log("all data --> ", resp2);
 
-    editObjectFromArrayFromFile({ city: "Pune" }, resp2[0].id, filePath);
+    await editObjectFromArrayFromFile({ city: "Pune" }, resp2[0].id, filePath);
     const resp3 = await getAllDataFromArrayFromFile(filePath);
     console.log("all data --> ", resp3);
 

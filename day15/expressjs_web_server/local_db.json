@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Subramanyam",
+        "city": "Chennai",
+        "score": 77,
+        "id": "c17bbd06-f909-4275-b031-9848eb38af90"
+    },
+    {
+        "name": "Anuj",
+        "city": "Noida",
+        "score": 65,
+        "id": "1b899f17-d851-4b75-8bdc-aa45c68d073a"
+    },
+    {
+        "name": "Rajat",
+        "city": "Mumbai",
+        "score": 88,
+        "id": "656cb7d5-6621-4927-8b44-1cb569569eaa"
+    }
+]
