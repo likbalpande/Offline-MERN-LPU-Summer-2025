@@ -1,3 +1,6 @@
+const dotEnv = require("dotenv");
+dotEnv.config();
+
 const express = require("express");
 
 require("./config/db.js");
@@ -15,6 +18,33 @@ app.get("/", (req, res) => {
         message: "Server is running...",
         data: {},
     });
+});
+
+app.get("/api/v1/products", async (req, res) => {
+    try {
+        const allProducts = await Product.find();
+        res.status(200);
+        res.json({
+            isSuccess: true,
+            message: "Products fetched!",
+            data: {
+                products: allProducts,
+            },
+        });
+    } catch (err) {
+        console.log("--- 🔴 error occurred in GET products ----");
+        console.log(err.message);
+        console.log("--- -------------- ----");
+
+        res.status(500);
+        res.json({
+            isSuccess: false,
+            message: "Internal Server Error",
+            data: {
+                errMessage: err.message,
+            },
+        });
+    }
 });
 
 app.post("/api/v1/products", async (req, res) => {
