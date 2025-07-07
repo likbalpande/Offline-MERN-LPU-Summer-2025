@@ -1,6 +1,6 @@
 const express = require("express");
 
-require("./config/db");
+require("./config/db.js");
 
 const { Product } = require("./models/product_schema.js");
 
@@ -21,7 +21,7 @@ app.post("/api/v1/products", async (req, res) => {
     try {
         const data = req.body;
         const newProduct = await Product.create(data);
-        res.status(201);
+        res.status(201); // status code: CREATED
         res.json({
             isSuccess: true,
             message: "Product created!",
@@ -33,14 +33,24 @@ app.post("/api/v1/products", async (req, res) => {
         console.log("--- 🔴 error occurred in post products ----");
         console.log(err.message);
         console.log("--- -------------- ----");
-        res.status(500);
-        res.json({
-            isSuccess: false,
-            message: "Internal Server Error",
-            data: {
-                errMessage: err.message,
-            },
-        });
+
+        if (err.name === "ValidationError" || err.code == "11000") {
+            res.status(400);
+            res.json({
+                isSuccess: false,
+                message: err.message,
+                data: {},
+            });
+        } else {
+            res.status(500);
+            res.json({
+                isSuccess: false,
+                message: "Internal Server Error",
+                data: {
+                    errMessage: err.message,
+                },
+            });
+        }
     }
 });
 
