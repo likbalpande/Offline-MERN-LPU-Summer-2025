@@ -1,11 +1,7 @@
 const dotEnv = require("dotenv");
 dotEnv.config();
 const express = require("express");
-
-const { apiRouter } = require("./api/v1/routes.js");
-
 const app = express();
-
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -15,7 +11,26 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/api/v1", apiRouter);
+app.get("/", (req, res) => {
+    res.json({
+        isSuccess: true,
+        message: "Server is running",
+        data: {},
+    });
+});
+
+app.get("/hello", (req, res) => {
+    res.json({
+        isSuccess: true,
+        message: "Hi! How are you?",
+        data: {},
+    });
+});
+
+app.use((req, res, next) => {
+    console.log("!!!!!!!");
+    next();
+});
 
 app.listen(2900, () => {
     console.log("------ Server is running --------");
