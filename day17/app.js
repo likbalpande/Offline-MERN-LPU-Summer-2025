@@ -1,5 +1,6 @@
 const dotEnv = require("dotenv");
 dotEnv.config();
+
 const express = require("express");
 
 const { apiRouter } = require("./api/v1/routes.js");
