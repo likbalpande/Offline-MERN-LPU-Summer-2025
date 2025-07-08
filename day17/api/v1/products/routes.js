@@ -1,16 +1,12 @@
 const express = require("express");
-const { createProductController } = require("./controllers.js");
+const { updateProductController, createProductController, getAllProducts } = require("./controllers.js");
 
 const productRouter = express.Router();
 
-productRouter.get("/", (req, res) => {
-    res.json({
-        isSuccess: true,
-        message: "Products list fetched!",
-        data: {},
-    });
-});
+productRouter.get("/", getAllProducts);
 
 productRouter.post("/", createProductController);
+
+productRouter.patch("/:productId", updateProductController);
 
 module.exports = { productRouter };
