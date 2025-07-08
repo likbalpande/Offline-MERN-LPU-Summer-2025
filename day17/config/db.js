@@ -5,7 +5,7 @@ mongoose
         dbName: "day17",
     })
     .then(() => {
-        console.log("----- DB connected -----");
+        console.log("------ DB connected ------");
     })
     .catch((err) => {
         console.log("----- DB connection error -----");
