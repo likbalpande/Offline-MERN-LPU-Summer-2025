@@ -84,6 +84,35 @@ app.post("/api/v1/products", async (req, res) => {
     }
 });
 
+app.delete("/api/v1/products/:productId", async (req, res) => {
+    try {
+        const { productId } = req.params;
+        const deletedItem = await Product.findByIdAndDelete(productId);
+
+        res.status(204);
+        res.json({
+            isSuccess: true,
+            message: "Product Deleted!",
+            data: {
+                product: deletedItem,
+            },
+        });
+    } catch (err) {
+        console.log("--- 🔴 error occurred in GET products ----");
+        console.log(err.message);
+        console.log("--- -------------- ----");
+
+        res.status(500);
+        res.json({
+            isSuccess: false,
+            message: "Internal Server Error",
+            data: {
+                errMessage: err.message,
+            },
+        });
+    }
+});
+
 app.listen(2900, () => {
     console.log("------ Server started ------");
 });
